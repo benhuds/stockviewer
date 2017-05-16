@@ -45,11 +45,9 @@ function createCheckbox() {
     var checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = true;
-    checkbox.name = "box";
     checkbox.id = v1.value;
     
     var label = document.createElement('label');
-    label.id = v1.value;
     label.appendChild(document.createTextNode(v1.value));
 
     var x = document.getElementById("target3{{prefix}}");
@@ -140,8 +138,7 @@ except IOError:
 <pd_script>
 self.d = {k: v[\'$val(measurement)\'] for k,v in self.tickers.items()}
 self.df = pd.DataFrame(self.d)
-self.df2 =
-self.df[(datetime.today()-timedelta(days=$val(dateRange))):datetime.today()]
+self.df2 = self.df[(datetime.today()-timedelta(days=$val(dateRange))):datetime.today()]
 self.df2.reset_index(inplace=True)
 self.pixieapp_entity = self.sqlContext.createDataFrame(self.df2)
 </pd_script>
