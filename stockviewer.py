@@ -22,8 +22,14 @@ class StockViewer:
 var assets = [];
 var createdReload = false;
 
+function deleteAsset(name) {
+    var parent = document.getElementById("target3{{prefix}}");
+    var child = document.getElementById(name);
+    parent.removeChild(child);
+}
+
 function computeValueFields() {
-    debugger;
+    //debugger;
     console.log("in compute");
     var toChart = [];
     for (i = 0; i < assets.length; i++) {
@@ -39,15 +45,22 @@ function createCheckbox() {
     var checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = true;
+    checkbox.name = "box";
     checkbox.id = v1.value;
     
     var label = document.createElement('label');
+    label.id = v1.value;
     label.appendChild(document.createTextNode(v1.value));
 
     var x = document.getElementById("target3{{prefix}}");
     x.appendChild(checkbox);
     x.appendChild(label);
     assets.push(v1.value);
+    
+    $("#"+v1.value).click(function(){
+    console.log("line",$("#line"))
+    $("#line").click();; // regenerate visualization
+    });
 }
 
 //function createReload() {
@@ -62,8 +75,7 @@ function createCheckbox() {
 </script>
 
 <div class="row" pixiedust="{{pd_controls|htmlAttribute}}">
-    <div class="form-group col-sm-2" style="padding-right:10px;"
-id="targetmain{{prefix}}">
+    <div class="form-group col-sm-2" style="padding-right:10px;" id="targetmain{{prefix}}">
         
         <p>
         <label>1. Add tickers</label>
@@ -128,7 +140,8 @@ except IOError:
 <pd_script>
 self.d = {k: v[\'$val(measurement)\'] for k,v in self.tickers.items()}
 self.df = pd.DataFrame(self.d)
-self.df2 = self.df[(datetime.today()-timedelta(days=$val(dateRange))):datetime.today()]
+self.df2 =
+self.df[(datetime.today()-timedelta(days=$val(dateRange))):datetime.today()]
 self.df2.reset_index(inplace=True)
 self.pixieapp_entity = self.sqlContext.createDataFrame(self.df2)
 </pd_script>
@@ -137,6 +150,7 @@ self.pixieapp_entity = self.sqlContext.createDataFrame(self.df2)
         
         <p><button type="submit"
         class="btn btn-primary"
+        id="line"
         pd_target=target{{prefix}}
         pixiedust
         pd_options="handlerId=lineChart;keyFields=Date;aggregation=SUM;rowCount=1000;timeseries=true;valueFields=$val(computeValueFields)"
@@ -165,5 +179,5 @@ self.pixieapp_entity = self.sqlContext.createDataFrame(self.df2)
 # ability to create column from existing data e.g. average
 # mini portfolio simulation e.g. plot returns from x shares of A and y shares of B
 
-#a = TestPixieApp()
-#a.run(runInDialog='false')
+# a = StockViewer()
+# a.run(runInDialog='false')
