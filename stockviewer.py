@@ -6,7 +6,7 @@ from pyspark.sql import SQLContext
 from pixiedust.display.app import *
 
 @PixieApp
-class TestPixieApp:
+class StockViewer:
 
     @route()
     def default(self): 
@@ -163,8 +163,7 @@ self.pixieapp_entity = self.sqlContext.createDataFrame(self.df2)
 # option to run python to filter
 # page to browse individual stocks
 # ability to create column from existing data e.g. average
-# mini portfolio simulation e.g. plot returns from x shares of A and y shares of
-# B
+# mini portfolio simulation e.g. plot returns from x shares of A and y shares of B
 
-a = TestPixieApp()
-a.run(runInDialog='false')
+#a = TestPixieApp()
+#a.run(runInDialog='false')

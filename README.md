@@ -6,5 +6,7 @@ stock market data. Open a Jupyter notebook and run
 ```python
 from stockviewer import *
 
-TestPixieApp().run(runInDialog='false')
+StockViewer().run(runInDialog='false')
 ```
+
+Requires Python 2.7, Spark 1.6, and the latest release of PixieDust.
