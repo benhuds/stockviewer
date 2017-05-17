@@ -88,7 +88,7 @@ function createCheckbox() {
         Add
 <pd_script>
 try:
-    self.tickers[\'$val(t)\'] = web.DataReader(\'$val(t)\','yahoo',self.start,self.end)
+    self.tickers[\'$val(t)\'] = web.DataReader(\'$val(t)\','google',self.start,self.end)
     print "Successfully added %s." % \'$val(t)\'
 #    print "Current tickers:"
 #    print ', '.join([k for k,v in self.tickers.iteritems()])
@@ -109,7 +109,7 @@ except IOError:
         <option value="High">High</option>
         <option value="Low">Low</option>
         <option value="Volume">Volume</option>
-        <option value="Adj Close">Adj Close</option>
+        <!-- <option value="Adj Close">Adj Close</option> -->
         </select>
         </p>
         
