@@ -59,6 +59,12 @@ function createCheckbox() {
     console.log("line",$("#line"))
     $("#line").click();; // regenerate visualization
     });
+
+$( "select" )
+    .change(function () {
+    $("#preview").click();; // recompute dataframe
+    $("#line").click();; // regenerate visualization
+    }); 
 }
 
 //function createReload() {
@@ -130,9 +136,10 @@ except IOError:
         <p>
         <button type="submit"
         class="btn btn-primary"
+        id="preview"
         pixiedust
         pd_target=target{{prefix}}
-        pd_options="handlerId=dataframe"
+        pd_options="noChartCache=true;handlerId=dataframe"
         pd_entity="pixieapp_entity">
         Preview as table
 <pd_script>
@@ -150,7 +157,7 @@ self.pixieapp_entity = self.sqlContext.createDataFrame(self.df2)
         id="line"
         pd_target=target{{prefix}}
         pixiedust
-        pd_options="handlerId=lineChart;keyFields=Date;aggregation=SUM;rowCount=1000;timeseries=true;valueFields=$val(computeValueFields)"
+        pd_options="noChartCache=true;handlerId=lineChart;keyFields=Date;aggregation=SUM;rowCount=1000;timeseries=true;valueFields=$val(computeValueFields)"
         pd_entity="pixieapp_entity">
         Line chart
         </button>
