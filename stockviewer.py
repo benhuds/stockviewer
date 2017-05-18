@@ -60,12 +60,12 @@ function createCheckbox() {
     $("#line").click();; // regenerate visualization
     });
 
-$( "select" )
-    .change(function () {
-    $("#preview").click();; // recompute dataframe
-    $("#line").click();; // regenerate visualization
-    }); 
-}
+// $( "select" )
+//    .change(function () {
+//    $("#preview").click();; // recompute dataframe
+//    $("#line").click();; // regenerate visualization
+//    }); 
+// }
 
 //function createReload() {
 //    var reload = document.createElement("button");
